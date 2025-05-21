@@ -1,6 +1,6 @@
 export interface Post {
-    author : string; 
-    date : Date;
-    subject : string; 
-    content : string;
+  author: string;
+  date: string;
+  title: string;
+  content: string;
 }
