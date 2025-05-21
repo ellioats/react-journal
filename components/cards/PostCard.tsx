@@ -29,9 +29,6 @@ export default function PostCard({ entry }: { entry: Post }) {
     }
   }, [entry.title.length, entry.title])
 
-
-
-
   return (
     <Card
       sx={{ width: 200 }}
