@@ -8,7 +8,7 @@ export default function Page() {
       <h1 className="text-2xl font-bold">Create new Post</h1>
 
       <Box>
-        <div className="flex flex-row">
+        <div className="flex flex-row gap-6">
           <div className="inline-flex decoration-white bg-transparent text-white">
             <TextField
               id="standard-basic"
@@ -16,6 +16,14 @@ export default function Page() {
               variant="standard"
               sx={{ width: '120px', top: '-20px', left: '10px' }}></TextField>
           </div>
+          <TextField
+            id="standard-basic2"
+            label="Author"
+            variant="standard"
+            sx={{ width: '120px', top: '-20px', left: '10px' }}
+          >
+
+          </TextField>
         </div>
 
         <div>
