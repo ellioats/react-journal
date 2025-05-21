@@ -3,13 +3,13 @@ import { CardHeader } from '@mui/material';
 import { Post } from '../../types/PostType';
 import { useEffect, useState } from 'react';
 
-
 export default function PostCard({ entry }: { entry: Post }) {
 
   const [showLimitedTitleText, setLimitStatus] = useState(false);
   const [limitedTextTitle, setLimitedTitle] = useState("");
+  const [limitedContentText, setlimitedContentText] = useState("");
 
-  // hook that only runs once
+  // hook that run s each time entry changes (once / call)
   useEffect(() => {
     console.log(`Useeffect: Title length = ${entry.title.length}`);
     if (entry.title.length > 30) {
@@ -28,6 +28,38 @@ export default function PostCard({ entry }: { entry: Post }) {
       console.log("title is not greater than 15 in length...");
     }
   }, [entry.title.length, entry.title])
+
+  // hook that sets a "preview" of the content 
+  useEffect(() => {
+    const limitedSplitContent = entry.content.split(' ');
+
+    let finalLimitedContent = "";
+
+    const limit = 5;
+
+    if (limitedSplitContent.length <= (limit - 1)) {
+      console.log("content is being set as default...")
+      finalLimitedContent = entry.content;
+    } else {
+
+      console.log("content is using for loop")
+
+      for (let x = 0; x < limit; x++) {
+        if (x == limit - 1) {
+          finalLimitedContent += " " + limitedSplitContent[x] + "...";
+        } else {
+          finalLimitedContent += limitedSplitContent[x] + " "
+        }
+      }
+    }
+
+
+    setlimitedContentText(finalLimitedContent);
+
+
+  }, [entry.content])
+
+
 
   return (
     <Card
@@ -57,7 +89,7 @@ export default function PostCard({ entry }: { entry: Post }) {
 
       <CardContent>
         <Typography variant="body2">
-          {entry.content}
+          {limitedContentText}
         </Typography>
       </CardContent>
 
